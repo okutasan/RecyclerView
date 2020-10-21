@@ -1,6 +1,7 @@
 package com.example.tuturu.recylerview;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +30,8 @@ public class CardViewPresidentAdapter extends RecyclerView.Adapter<CardViewPresi
     public void setListPresident(ArrayList<President> listPresident) {
         this.listPresident = listPresident;
     }
+
+    @NonNull
     @Override
     public CardViewViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cardview_president, parent, false);
@@ -44,6 +47,7 @@ public class CardViewPresidentAdapter extends RecyclerView.Adapter<CardViewPresi
         Glide.with(context)
                 .load(p.getPhoto())
                 .override(350, 550)
+                .error(R.color.cardview_dark_background)
                 .into(holder.imgPhoto);
 
         holder.tvName.setText(p.getName());
