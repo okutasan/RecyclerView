@@ -1,6 +1,7 @@
 package com.example.tuturu.recylerview;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,11 +30,12 @@ public class CardViewPresidentAdapter extends RecyclerView.Adapter<CardViewPresi
     public void setListPresident(ArrayList<President> listPresident) {
         this.listPresident = listPresident;
     }
+
+    @NonNull
     @Override
     public CardViewViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cardview_president, parent, false);
-        CardViewViewHolder viewHolder = new CardViewViewHolder(view);
-        return viewHolder;
+        return new CardViewViewHolder(view);
     }
 
     @Override
@@ -44,6 +46,7 @@ public class CardViewPresidentAdapter extends RecyclerView.Adapter<CardViewPresi
         Glide.with(context)
                 .load(p.getPhoto())
                 .override(350, 550)
+                .error(R.color.cardview_dark_background)
                 .into(holder.imgPhoto);
 
         holder.tvName.setText(p.getName());
@@ -77,11 +80,11 @@ public class CardViewPresidentAdapter extends RecyclerView.Adapter<CardViewPresi
         Button btnFavorite, btnShare;
         public CardViewViewHolder(View itemView) {
             super(itemView);
-            imgPhoto = (ImageView)itemView.findViewById(R.id.img_item_photo);
-            tvName = (TextView)itemView.findViewById(R.id.tv_item_name);
-            tvRemarks = (TextView)itemView.findViewById(R.id.tv_item_remarks);
-            btnFavorite = (Button)itemView.findViewById(R.id.btn_set_favorite);
-            btnShare = (Button)itemView.findViewById(R.id.btn_set_share);
+            imgPhoto = itemView.findViewById(R.id.img_item_photo);
+            tvName = itemView.findViewById(R.id.tv_item_name);
+            tvRemarks = itemView.findViewById(R.id.tv_item_remarks);
+            btnFavorite = itemView.findViewById(R.id.btn_set_favorite);
+            btnShare = itemView.findViewById(R.id.btn_set_share);
         }
     }
 }
